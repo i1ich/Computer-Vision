@@ -497,6 +497,10 @@ def print_hi():
         for i in range(int(len(s1) / 2)):
             obj.append([int(s1[i * 2]), int(s1[i * 2 + 1])])
         list.append(obj)
+
+    if N == 0:
+        print("0")
+        return
     im = Image.open(args.image)
     #im = Image.open("test2.png")
 
@@ -617,11 +621,18 @@ def print_hi():
                 pixelsNew[i, j] = (255, 255, 0, 255)
                 vert.append((i, j))
     img.save("outc.png")
+    if len(vert) == 0:
+        print("0")
+        return
     figgroup = []
     makegroup(vert, gooddata, figgroup)
-    shell(figgroup[0], len(figgroup[0]))
-    shell(figgroup[1], len(figgroup[1]))
-    shell(figgroup[2], len(figgroup[2]))
+
+    for i in range(len(figgroup)):
+        shell(figgroup[i], len(figgroup[i]))
+
+    #shell(figgroup[0], len(figgroup[0]))
+    #shell(figgroup[1], len(figgroup[1]))
+    #shell(figgroup[2], len(figgroup[2]))
 
     perims = []
     in_figs = []
@@ -642,7 +653,7 @@ def print_hi():
             sum += dist2(f[j][0][0], f[j][0][1], f[j][1][0], f[j][1][1])
         myperims.append(sum)
 
-    a = is_sample(figgroup[2], myperims[2], in_figs[1], perims[1])
+    #a = is_sample(figgroup[2], myperims[2], in_figs[1], perims[1])
     out = []
     for i in range(0, len(figgroup)):
         for j in range(0, len(in_figs)):
